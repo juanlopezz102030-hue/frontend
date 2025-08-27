@@ -1,5 +1,5 @@
 // API client con JWT. Cambiá BASE_URL si corrés el backend.
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'https://backend-efcq.onrender.com';
 let token = localStorage.getItem('cayo_token') || null;
 let currentUser = null;
 

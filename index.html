@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAYO • Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🎲</span> CAYO <span class="muted">ADMIN</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="balance" id="walletWrap" hidden>
+    <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.9 7.2 18l.9-5.4L4.2 8.7l5.4-.8L12 3z" fill="currentColor"/></svg>
+    <span id="walletAmount">$0.00</span>
+  </div>
+  <div id="userBox" class="userbox" hidden>
+    <span id="userName"></span>
+    <button id="btnLogout" class="btn small">Salir</button>
+  </div>
+</header>
+
+<main class="container" id="screenLogin">
+  <section class="card login">
+    <h1>Iniciar sesión</h1>
+    <form id="formLogin">
+      <label>Correo
+        <input id="email" type="email" required placeholder="admin@cayo.local">
+      </label>
+      <label>Contraseña
+        <input id="password" type="password" required placeholder="••••••••">
+      </label>
+      <button class="btn primary" type="submit">Entrar</button>
+      <p class="muted">Demo: admin@cayo.local / admin123 (si no definís .env en backend)</p>
+    </form>
+  </section>
+</main>
+
+<main class="container" id="screenPanel" hidden>
+  <div class="page-title">
+    <h1>Usuarios</h1>
+    <div class="row-gap">
+      <button id="btnNewUser" class="btn primary">Nuevo</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="search-inline">
+      <input id="q" placeholder="Buscar por ID">
+    </div>
+    <select id="roleFilter">
+      <option value="">Todos los roles</option>
+      <option value="player">Jugador</option>
+      <option value="admin">Admin</option>
+      <option value="operator">Operador</option>
+    </select>
+    <div class="spacer"></div>
+  </div>
+
+  <section class="card">
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th class="right">Fichas</th>
+            <th class="right">Depósitos</th>
+            <th>Rol</th>
+            <th class="right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pager"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <small>© 2025 CAYO • v1</small>
+</footer>
+
+<!-- Depósito modal -->
+<dialog id="depModal">
+  <form method="dialog" class="card modal">
+    <h3>Nuevo depósito</h3>
+    <p id="depUser"></p>
+    <label>Monto (USD)
+      <input id="depAmount" type="number" step="0.01" min="0.01" required value="10">
+    </label>
+    <menu>
+      <button value="cancel" class="btn">Cancelar</button>
+      <button id="depConfirm" value="ok" class="btn primary">Confirmar</button>
+    </menu>
+  </form>
+</dialog>
+
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
